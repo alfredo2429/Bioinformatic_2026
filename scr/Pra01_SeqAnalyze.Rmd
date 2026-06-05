@@ -1,0 +1,592 @@
+---
+title: "SequenceAnalysisEB"
+author: "Cardenas-Rivera, A."
+date: "2026-05-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Bioinformatics Advances
+
+## Practical Assignment: Sequence Analysis of Epidermolysis Bullosa (EB) Genes Using R
+
+### Learning Objectives
+
+By the end of this practical, students will be able to:
+
+1. Import and manipulate DNA and protein sequences in R.
+2. Compute descriptive and biophysical statistics from protein sequences.
+3. Identify regulatory motifs and splice-site signals.
+4. Characterize hydrophobic regions and predict transmembrane domains.
+5. Perform multiple sequence alignment (MSA).
+6. Construct and interpret phylogenetic trees.
+7. Integrate biological interpretation with computational results.
+
+---
+
+# Background
+
+Epidermolysis Bullosa (EB) is a group of inherited skin disorders characterized by skin fragility and blister formation. Several genes are frequently implicated, including:
+
+* KRT5 (Keratin 5)
+* KRT14 (Keratin 14)
+* COL7A1 (Collagen VII Alpha 1)
+
+In this practical, you will analyze DNA and protein sequences from EB-associated genes using R.
+
+---
+
+# Required Packages
+```{r}
+# Install packages
+
+#install.packages(c("seqinr", "ape"))
+#install.packages("rentrez")
+
+#if (!requireNamespace("BiocManager"))
+#  install.packages("BiocManager")
+
+#BiocManager::install(c("Biostrings", "msa"))
+
+
+#Load libraries:
+
+library(seqinr)
+library(Biostrings)
+library(msa)
+library(ape)
+library(rentrez)
+```
+
+---
+
+# Phase 1: Data Acquisition and Descriptive Statistics
+
+## Objective
+
+Generate a biophysical profile of an EB protein sequence.
+
+### Biological Question
+
+What are the basic biochemical properties of the protein?
+
+### Tasks
+
+1. Download the protein FASTA sequence of KRT14 from NCBI.
+2. Import the sequence into R.
+3. Calculate amino acid frequencies.
+4. Calculate molecular composition.
+5. Determine the isoelectric point.
+
+### Code
+
+#### Load sequence
+
+```{r}
+# load from local file
+# krt14 <- read.fasta("KRT14.fasta")
+
+# load from NCBI repository
+krt14 <- entrez_fetch(db = "nuccore", 
+                            id = "NM_000526", 
+                            rettype = "fasta")
+krt14
+```
+
+#### Convert to read.fasta format
+
+```{r}
+krt14 <- seqinr::read.fasta(file = textConnection(krt14), 
+                                      seqtype = "DNA", 
+                                      as.string = TRUE)
+summary(krt14)
+```
+
+#### Get sequence
+
+```{r}
+# as a separate character vector (jby default)
+seqKrt14 <- getSequence(krt14[[1]])     # extract only sequence
+seqKrt14                  # print sequence
+table(seqKrt14)           # contingency table of absolute values
+prop.table(table(seqKrt14))# contingency table of relative values
+
+# as a string
+seqKrt14 <- getSequence(krt14[[1]], as.string = T)   # extract sequence as STRING
+seqKrt14 <- unlist(seqKrt14)           # unlist the sequence
+seqKrt14                               # print the sequence
+
+```
+
+### Import a protein sequence
+
+```{r}
+# load from NCBI repository
+kRT14 <- entrez_fetch(db = "protein",                      # Watch out!!! change DB 
+                            id = "NP_000517", 
+                            rettype = "fasta")
+
+# convert to read.fasta format
+kRT14 <- seqinr::read.fasta(file = textConnection(kRT14), 
+                                      seqtype = "AA",       # Watch out!!! change type
+                                      as.string = TRUE)
+# extract sequence
+seqKRT14 <- unlist(getSequence(kRT14[[1]])) 
+
+table(seqKRT14)
+
+AAstat(seqKRT14)
+```
+
+### Questions
+
+1. Which amino acids are most abundant?
+2. What is the predicted isoelectric point?
+3. Does the amino acid composition suggest a structural protein?
+
+---
+
+# Inline Glossary
+
+### FASTA
+
+Standard text format used to store biological sequences.
+
+### Vignette
+
+A tutorial document included with many R packages that demonstrates package functionality using real examples.
+
+---
+
+# Phase 2: Pattern Discovery (Regulatory and Splicing Sites)
+
+## Objective
+
+Identify biologically relevant sequence motifs.
+
+### Biological Question
+
+Can we locate potential promoter and splice-site elements?
+
+---
+
+## Part A: Regulatory Motifs
+
+Search for TATA boxes.
+
+### Code
+
+#### Download sequence and extract sequence
+
+```{r}
+# download sequnce from NCBI repository
+gnmKrt14 <- entrez_fetch(db = "nuccore", 
+                         id = "NG_008624.2", 
+                         rettype =  "fasta")
+
+# TIP: If you have a connection issue (lag connection)
+# Increase the connection timeout to 60 seconds (60000 milliseconds)
+options(timeout = 60)
+
+# Explicitly write the text to the exact file path expected
+write(gnmKrt14, file = file.path(dirname(getwd()),"data","KRT14_genomic.fasta"))
+
+# Import from local location 
+dna <- readDNAStringSet(file.path(dirname(getwd()),"data","KRT14_genomic.fasta"))
+
+# Convert to sequence
+sequence <- dna[[1]]    # unlist 
+sequence                # print the sequence
+
+```
+
+#### Find TATA box
+
+A common promoter pattern located about *25* to *30* base pairs upstream of the start site. The consensus sequence is universally: *TATAAA*
+
+```{r}
+matchPattern("TATAAA", sequence)
+```
+
+### Alternative Motif
+
+#### Search for GC-rich promoter motifs.
+
+```{r}
+matchPattern("GGGCGG", sequence)
+```
+
+#### Search for a CAAT box
+Often found around *-70* to *-80* base pairs upstream, usually following the pattern: *GGCCAATCT*
+
+```{r}
+matchPattern("GGCCAATCT", sequence)
+```
+
+Change parameters to make it a litle flexible
+
+```{r}
+matchPattern("GGCCAATCT", sequence, max.mismatch = 1)
+```
+
+### Questions
+
+1. How many TATA motifs were found?
+2. Are they located upstream of the coding sequence?
+
+---
+
+## Part B: Splicing Sites
+
+Search for canonical GT/AG splice junctions.
+
+### Code
+
+```{r}
+library(Biostrings)
+
+matches_GT <- matchPattern("GT", sequence) # use vmatchPattern() for multiple sequences
+
+matches_AG <- matchPattern("AG", sequence)
+```
+
+Using regular expressions:
+
+```{r}
+gregexpr("GT.*?AG",
+         as.character(sequence))
+```
+
+### Questions
+
+1. How many potential splice sites were identified?
+2. Why might some predictions be false positives?
+
+---
+
+# Inline Glossary
+
+### Motif
+
+A short recurring DNA sequence associated with a biological function.
+
+### Regular Expression
+
+A pattern-matching language used to identify specific text or sequence structures.
+
+---
+
+# Phase 3: Biophysical Profiling
+
+## Objective
+
+Identify hydrophobic regions and potential transmembrane domains.
+
+### Biological Question
+
+Does the protein contain membrane-spanning regions?
+
+---
+
+## Hydropathy Analysis
+
+Use the Kyte-Doolittle hydropathy scale.
+
+### Code
+
+```{r}
+# 1. Install and load required libraries
+#if (!requireNamespace("Biostrings", quietly = TRUE)) {
+#  if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+#  BiocManager::install("Biostrings")
+#}
+library(Biostrings)
+
+# 2. Define the Kyte-Doolittle hydrophobicity scale vectors:
+kd_scale <- c(A=1.8, R=-4.5, N=-3.5, D=-3.5, C=2.5, Q=-3.5, E=-3.5, G=-0.4, H=-3.2, 
+              I=4.5, L=3.8, K=-3.9, M=1.9, F=2.8, P=-1.6, S=-0.8, T=-0.7, W=-0.9, 
+              Y=-1.3, V=4.2)
+
+# 3. Define hydrophobicity
+hydro <- kd_scale[unlist(strsplit(seqKRT14,""))]
+
+plot(hydro, type="l")
+```
+
+Smooth the plot
+
+```{r}
+#install.packages("zoo")
+library(zoo)
+
+hydro.fil <- rollapply(hydro, width = 20, FUN = mean, fill = NA, align = "center")
+plot(hydro.fil, type="l")
+```
+To identify a potential transmembrane (TM) $\alpha$-helical motif using the Kyte-Doolittle scale, a sliding window average of above *1.6* to *1.8* is generally required. This hydrophobic stretch must typically be sustained for 19 to 21 consecutive amino acids, which is the required length to span the hydrophobic core of a cell membrane
+---
+
+
+### Questions
+
+1. Are there strongly hydrophobic regions?
+2. Would you predict transmembrane domains?
+
+---
+
+# Inline Glossary
+
+
+### Hydropathy
+
+A measure of amino acid hydrophobicity or hydrophilicity.
+
+---
+
+# Phase 4: Multiple Sequence Alignment
+
+## Objective
+
+Identify conserved regions across species.
+
+### Biological Question
+
+Which regions of the protein are evolutionarily conserved?
+
+---
+
+## Tasks
+
+Download orthologous KRT14 protein sequences from:
+
+* Human
+* Mouse
+* Rat
+* Zebrafish
+* Cow
+
+---
+
+## Code
+
+#### Import data set
+
+```{r}
+seqs <- readAAStringSet(filepath = file.path(dirname(getwd()),"data","krt14_homolo.fasta"))
+
+```
+
+#### Alignment
+
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("msa")
+
+library(msa)
+
+alignment <- msa(
+  seqs,
+  method = "Muscle"
+)
+
+alignment
+```
+
+#### Visualize:
+
+```{r}
+msaPrettyPrint(
+  alignment,
+  output = "pdf",
+  file = file.path(dirname(getwd()),"plot","alignment.pdf"),
+  showNames = "left",
+  showLogo = "top",
+  shadingMode = "similar"
+)
+
+
+# if you get a error with latex pdf
+#install.packages("tinytex") # DO NOT restart session for now
+#tinytex::install_tinytex()
+
+```
+
+#### Finding the consensus sequence
+
+```{r}
+cm <- consensusMatrix(alignment)         # define the consensus matrix
+cns <- consensusString(alignment)
+cns
+```
+
+#### Plot a specific region of interest in the sequence
+
+```{r}
+# install.packages("ggseqlogo", dependencies = T)
+
+
+library(Biostrings)
+library(ggseqlogo)
+
+
+# Convert to character vector
+seqs <- as.character(alignment)
+
+# Plot sequence logo
+ggseqlogo(seqs, method = "prob")        # test outside the markdown
+
+```
+
+method = "bits"
+stack height depends on conservation
+conserved positions become taller
+noisy positions shrink
+
+This is the classic publication-style sequence logo.
+
+
+```{r}
+ggseqlogo(seqs, method = "bits")
+
+```
+
+using ggplot to improve output
+
+
+```{r}
+library(ggplot2)
+
+ggseqlogo(seqs, method = "bits") +
+  theme_bw(base_size = 14) +
+  ggtitle("Protein sequence logo")
+
+```
+
+Make a crop of the consensus sequence
+
+```{r}
+library(ggseqlogo)
+# convert to AAStringSet
+alignment_set <- unmasked(alignment)
+
+# Crop alignment positions
+cropped_alignment <- Biostrings::subseq(alignment_set, start = 350, end = 360)
+# Convert to character vector
+seqs_crop <- as.character(cropped_alignment)
+
+# Plot sequence logo
+ggseqlogo(seqs_crop, method = "prob") +
+  theme_bw(base_size = 14) +
+  ggtitle("Protein sequence logo")
+```
+
+```{r}
+# Plot sequence logo
+ggseqlogo(seqs_crop, method = "bit") +
+  theme_bw(base_size = 14) +
+  ggtitle("Protein sequence logo")
+```
+
+
+### Questions
+
+1. Which regions show the highest conservation?
+2. Are disease-associated residues located in conserved regions?
+
+---
+
+# Inline Glossary
+
+### Ortholog
+
+Genes in different species derived from a common ancestral gene.
+
+### Multiple Sequence Alignment (MSA)
+
+Alignment of several sequences to identify conserved regions.
+
+### Wrapper
+
+A function that simplifies the use of a more complex software package.
+
+---
+
+# Phase 5: Evolutionary Inference
+
+## Objective
+
+Reconstruct evolutionary relationships among orthologs.
+
+### Biological Question
+
+How have EB genes evolved across species?
+
+---
+
+## Distance Matrix
+
+```{r}
+alignment_matrix <- as.matrix(alignment)
+
+distances <- dist.alignment(
+  as.alignment(alignment_matrix),
+  "identity"
+)
+
+distances
+```
+
+---
+
+## Neighbor-Joining Tree
+
+```{r}
+tree <- nj(distances)
+
+plot(tree,
+     main="KRT14 Evolutionary Tree")
+```
+
+Bootstrap support:
+The boot.phylo() function from the ape package performs bootstrap support analysis for phylogenetic trees.
+It estimates how strongly the data support each branch (clade) in your phylogenetic tree.
+
+```{r}
+boot.phylo(tree,
+           alignment_matrix,
+           function(xx)
+             njs(dist.aa(xx)))
+```
+
+### Questions
+
+1. Which species is closest to humans?
+2. Does the tree reflect known mammalian evolution?
+3. Are there any unexpected relationships?
+
+---
+
+# Final Report
+
+Prepare a short report (3–5 pages) including:
+
+1. Introduction
+2. Methods
+3. Results
+4. Biological interpretation
+5. Figures and plots
+6. Conclusions
+
+---
+
+# Bonus Challenge
+
+Select one pathogenic mutation from ClinVar in KRT14 or COL7A1 and discuss:
+
+* Whether it occurs in a conserved region.
+* Whether it alters protein hydrophobicity.
+* Whether it may affect splicing.
+* Its potential impact on protein function.

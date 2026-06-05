@@ -1,0 +1,247 @@
+"ID"	"smb"	"gen"	"log2"	"pVal"
+"198"	7898192	"DNAJC16"	"DnaJ heat shock protein family (Hsp40) member C16"	-0.913	3.23
+"199"	7899407	"SMPDL3B"	"sphingomyelin phosphodiesterase acid like 3B"	1.107	3.434
+"201"	7901513	"SCP2"	"sterol carrier protein 2"	-1.297	4.031
+"202"	7901592	"TCEANC2"	"transcription elongation factor A N-terminal and central domain containing 2"	-1.027	4.132
+"203"	7901788	"NFIA"	"nuclear factor I A"	-0.95	3.121
+"204"	7901895	"ATG4C"	"autophagy related 4C cysteine peptidase"	-1.3	3.95
+"205"	7901931	"EFCAB7"	"EF-hand calcium binding domain 7"	-1.523	4.376
+"206"	7902308	"FPGT-TNNI3K///FPGT"	"FPGT-TNNI3K readthrough///fucose-1-phosphate guanylyltransferase"	-1.073	3.286
+"207"	7902396	"SNORD45C"	"small nucleolar RNA, C/D box 45C"	-2.06	4.738
+"208"	7902565	"ADGRL2"	"adhesion G protein-coupled receptor L2"	2.68	3.682
+"209"	7902634	"RPF1"	"ribosome production factor 1 homolog"	-0.86	3.174
+"210"	7902850	"GBP6"	"guanylate binding protein family member 6"	-2.697	5.329
+"211"	7902992	"RPAP2"	"RNA polymerase II associated protein 2"	-0.93	3.713
+"213"	7907297	"FMO4"	"flavin containing monooxygenase 4"	-1.693	3.839
+"214"	7907601	"BRINP2"	"BMP/retinoic acid inducible neural specific 2"	0.88	3.399
+"215"	7908178	"SWT1"	"SWT1, RNA endoribonuclease homolog"	-1.273	4.78
+"216"	7908347	"OCLM"	"oculomedin"	-1.147	3.429
+"217"	7909877	"Mar-01"	"mitochondrial amidoxime reducing component 1"	2.247	3.847
+"218"	7910001	"DEGS1"	"delta 4-desaturase, sphingolipid 1"	-1.26	3.661
+"219"	7910190	"ZNF678"	"zinc finger protein 678"	-1.307	3.645
+"220"	7910369	"HIST3H2BB"	"histone cluster 3, H2bb"	0.903	3.189
+"221"	7911096	"EFCAB2"	"EF-hand calcium binding domain 2"	-1.967	3.847
+"222"	7911233	"OR2T8"	"olfactory receptor family 2 subfamily T member 8"	0.953	3.409
+"223"	7914322	"SNORD103B///SNORD103A"	"small nucleolar RNA, C/D box 103B///small nucleolar RNA, C/D box 103A"	-0.803	3.197
+"224"	7914324	"SNORD103B///SNORD103A"	"small nucleolar RNA, C/D box 103B///small nucleolar RNA, C/D box 103A"	-0.803	3.197
+"225"	7915091	"MTF1"	"metal regulatory transcription factor 1"	-0.86	3.494
+"228"	7916808	"SLC35D1"	"solute carrier family 35 member D1"	-1.143	3.217
+"229"	7916928	"ANKRD13C"	"ankyrin repeat domain 13C"	-0.873	3.318
+"230"	7917052	"SLC44A5"	"solute carrier family 44 member 5"	-2.94	5.375
+"231"	7918034	"DPH5"	"diphthamide biosynthesis 5"	-0.837	3.599
+"233"	7919197	"POLR3GL"	"RNA polymerase III subunit G like"	-1.01	3.675
+"235"	7919787	"HORMAD1"	"HORMA domain containing 1"	-5.993	8.118
+"236"	7921434	"AIM2"	"absent in melanoma 2"	-3.21	3.479
+"237"	7922870	"TRMT1L"	"tRNA methyltransferase 1 like"	-1.147	3.167
+"238"	7927146	"CSGALNACT2"	"chondroitin sulfate N-acetylgalactosaminyltransferase 2"	-1.05	3.184
+"239"	7927267	"FAM35DP///FAM35BP///FAM35A"	"family with sequence similarity 35, member A pseudogene///family with sequence similarity 35, member A pseudogene///family with sequence similarity 35 member A"	-1.013	3.307
+"240"	7927288	"FAM35DP///FAM35BP///FAM35A"	"family with sequence similarity 35, member A pseudogene///family with sequence similarity 35, member A pseudogene///family with sequence similarity 35 member A"	-1.033	3.657
+"241"	7927599	"ASAH2B///ASAH2"	"N-acylsphingosine amidohydrolase 2B///N-acylsphingosine amidohydrolase 2"	-1.183	3.318
+"242"	7930208	"INA"	"internexin neuronal intermediate filament protein alpha"	5.043	3.819
+"243"	7934920	"LIPA"	"lipase A, lysosomal acid type"	-0.947	3.185
+"245"	7942064	"GAL"	"galanin and GMAP prepropeptide"	2.453	4.433
+"246"	7942520	"LOC100287896"	"uncharacterized LOC100287896"	-1.043	4.11
+"247"	7943231	"ANKRD49"	"ankyrin repeat domain 49"	-1.43	3.811
+"248"	7944913	"CCDC15"	"coiled-coil domain containing 15"	-1.087	3.164
+"249"	7947147	"SVIP"	"small VCP interacting protein"	2.817	6.531
+"250"	7949410	"MALAT1"	"metastasis associated lung adenocarcinoma transcript 1 (non-protein coding)"	-1.277	3.356
+"252"	7951032	"SNORA1///TAF1D"	"small nucleolar RNA, H/ACA box 1///TATA-box binding protein associated factor, RNA polymerase I subunit D"	-1.6	4.285
+"253"	7951077	"SESN3"	"sestrin 3"	-0.9	3.144
+"254"	7953264	"KCNA6"	"potassium voltage-gated channel subfamily A member 6"	0.787	3.417
+"255"	7954460	"LYRM5"	"LYR motif containing 5"	-1.45	4.485
+"256"	7954511	"STK38L"	"serine/threonine kinase 38 like"	-1.22	3.376
+"257"	7954711	"KIAA1551"	"KIAA1551"	-1.173	3.26
+"258"	7954729	"FGD4"	"FYVE, RhoGEF and PH domain containing 4"	-1.32	3.123
+"259"	7955869	"HOXC8"	"homeobox C8"	0.81	3.438
+"260"	7957540	"MRPL42"	"mitochondrial ribosomal protein L42"	-1.433	3.99
+"261"	7958262	"TCP11L2"	"t-complex 11 like 2"	-1.813	3.23
+"262"	7959473	"DENR"	"density regulated re-initiation and release factor"	-1.013	3.433
+"265"	7961083	"CLEC2B"	"C-type lectin domain family 2 member B"	-3.953	5.732
+"267"	7962590	"RPAP3"	"RNA polymerase II associated protein 3"	-1.603	3.19
+"268"	7963575	"EIF4B"	"eukaryotic translation initiation factor 4B"	-1.293	3.791
+"269"	7965060	"BBS10"	"Bardet-Biedl syndrome 10"	-1.3	3.778
+"270"	7965760	"DEPDC4"	"DEP domain containing 4"	-1.45	3.307
+"271"	7965789	"ARL1"	"ADP ribosylation factor like GTPase 1"	-1.47	3.711
+"273"	7968670	"UFM1"	"ubiquitin fold modifier 1"	-1.2	3.839
+"274"	7968892	"SERP2"	"stress-associated endoplasmic reticulum protein family member 2"	1.087	3.49
+"275"	7968972	"POPDC2///COX17"	"popeye domain containing 2///COX17, cytochrome c oxidase copper chaperone"	-1.42	4.105
+"276"	7969093	"MLNR"	"motilin receptor"	0.79	3.271
+"277"	7969114	"SETDB2"	"SET domain bifurcated 2"	-0.843	3.576
+"279"	7970704	"MTIF3"	"mitochondrial translational initiation factor 3"	-0.883	3.327
+"280"	7971419	"SIAH3"	"siah E3 ubiquitin protein ligase family member 3"	0.827	3.347
+"281"	7971565	"LPAR6"	"lysophosphatidic acid receptor 6"	-1.28	3.978
+"282"	7971644	"SPRYD7"	"SPRY domain containing 7"	-0.863	3.394
+"284"	7973948	"BRMS1L"	"breast cancer metastasis-suppressor 1-like"	-1.267	3.19
+"286"	7974587	"ACTR10"	"actin-related protein 10 homolog"	-0.973	3.527
+"287"	7974870	"SNAPC1"	"small nuclear RNA activating complex polypeptide 1"	-1.837	3.746
+"288"	7975068	"ZBTB1"	"zinc finger and BTB domain containing 1"	-1.32	3.329
+"289"	7976567	"BDKRB1"	"bradykinin receptor B1"	-2.103	4.529
+"290"	7976571	"GSKIP"	"GSK3B interacting protein"	-1.007	3.282
+"291"	7978838	"DNAAF2"	"dynein axonemal assembly factor 2"	-1.2	3.389
+"292"	7979133	"NID2"	"nidogen 2"	1.91	4.408
+"293"	7982187	"APBA2"	"amyloid beta precursor protein binding family A member 2"	1.23	3.168
+"294"	7985089	"RCN2"	"reticulocalbin 2"	-1.087	3.251
+"295"	7985480	"SNHG21///SCARNA15///SNHG21"	"small nucleolar RNA host gene 21///small Cajal body-specific RNA 15///small nucleolar RNA host gene 21"	-1.133	3.19
+"298"	7989611	"FAM96A"	"family with sequence similarity 96 member A"	-1.04	3.873
+"299"	7992447	"SYNGR3"	"synaptogyrin 3"	1.007	3.151
+"300"	7993453	"MPV17L"	"MPV17 mitochondrial inner membrane protein like"	1.117	3.765
+"303"	8001133	"SHCBP1"	"SHC binding and spindle associated 1"	-0.963	3.141
+"304"	8001410	"AKTIP"	"AKT interacting protein"	-1.177	3.962
+"305"	8005225	"USP32P1"	"ubiquitin specific peptidase 32 pseudogene 1"	-1.49	4.197
+"306"	8005689	"USP32P2///USP32P1"	"ubiquitin specific peptidase 32 pseudogene 2///ubiquitin specific peptidase 32 pseudogene 1"	-1.357	3.585
+"307"	8006638	"GGNBP2"	"gametogenetin binding protein 2"	-0.89	3.254
+"308"	8010082	"SNORD1A"	"small nucleolar RNA, C/D box 1A"	-1.303	3.497
+"309"	8013272	"CCDC144CP///CCDC144NL///CCDC144B///CCDC144A"	"coiled-coil domain containing 144C, pseudogene///coiled-coil domain containing 144 family, N-terminal like///coiled-coil domain containing 144B (pseudogene)///coiled-coil domain containing 144A"	-1.777	3.161
+"310"	8013660	"ALDOC"	"aldolase, fructose-bisphosphate C"	2	3.231
+"312"	8014037	"CRLF3"	"cytokine receptor like factor 3"	-1.057	3.411
+"313"	8014100	"C17orf75"	"chromosome 17 open reading frame 75"	-1.17	3.244
+"314"	8015715	"BECN1"	"beclin 1"	-1.32	3.482
+"315"	8020384	"GREB1L"	"growth regulation by estrogen in breast cancer 1 like"	1.15	3.589
+"316"	8021301	"RAB27B"	"RAB27B, member RAS oncogene family"	-1.833	4.163
+"317"	8022393	"PTPN2"	"protein tyrosine phosphatase, non-receptor type 2"	-0.85	3.19
+"318"	8022404	"FAM210A"	"family with sequence similarity 210 member A"	-1.237	3.386
+"319"	8023261	"ACAA2"	"acetyl-CoA acyltransferase 2"	1.977	3.838
+"320"	8027254	"ZNF90"	"zinc finger protein 90"	2.05	3.261
+"321"	8027260	"ZNF486"	"zinc finger protein 486"	3.367	4.201
+"323"	8031632	"ZNF542P"	"zinc finger protein 542, pseudogene"	2.437	3.25
+"324"	8031712	"ZNF805"	"zinc finger protein 805"	-1.127	3.312
+"325"	8033809	"ZNF846"	"zinc finger protein 846"	-1.4	3.73
+"326"	8035789	"ZNF826P"	"zinc finger protein 826, pseudogene"	1.827	3.194
+"327"	8035795	"ZNF626"	"zinc finger protein 626"	1.733	3.439
+"328"	8037298	"CD177"	"CD177 molecule"	-1.343	3.37
+"329"	8037467	"ZFP28///ZNF229"	"ZFP28 zinc finger protein///zinc finger protein 229"	2.017	3.632
+"330"	8046360	"METAP1D"	"methionyl aminopeptidase type 1D (mitochondrial)"	-1.103	3.429
+"331"	8046530	"HOXD11"	"homeobox D11"	-1.327	4.231
+"332"	8046536	"HOXD10"	"homeobox D10"	-4.09	5.877
+"333"	8046546	"HOXD8"	"homeobox D8"	-1.163	3.891
+"334"	8046792	"DUSP19"	"dual specificity phosphatase 19"	-1.417	3.718
+"335"	8047086	"NAB1"	"NGFI-A binding protein 1"	-1.237	3.697
+"336"	8047419	"CASP8"	"caspase 8"	-1.19	3.423
+"337"	8047780	"SNORA41"	"small nucleolar RNA, H/ACA box 41"	-0.883	3.184
+"338"	8048432	"CYP27A1"	"cytochrome P450 family 27 subfamily A member 1"	0.783	3.411
+"339"	8048889	"FBXO36"	"F-box protein 36"	-0.907	3.77
+"340"	8051670	"SOS1"	"SOS Ras/Rac guanine nucleotide exchange factor 1"	-0.913	3.16
+"342"	8052438	"LOC339803"	"uncharacterized LOC339803"	-1.193	3.387
+"343"	8052554	"FAM161A"	"family with sequence similarity 161 member A"	-1.2	3.585
+"344"	8052834	"C2orf42"	"chromosome 2 open reading frame 42"	-1.057	3.288
+"345"	8054297	"CHST10"	"carbohydrate sulfotransferase 10"	1.577	3.372
+"346"	8056151	"PLA2R1"	"phospholipase A2 receptor 1"	-1.083	3.701
+"347"	8056837	"GPR155"	"G protein-coupled receptor 155"	-1.22	4.119
+"348"	8057887	"STK17B"	"serine/threonine kinase 17b"	-1.343	3.713
+"349"	8058509	"PLEKHM3"	"pleckstrin homology domain containing M3"	-1.07	3.457
+"351"	8059650	"SP110"	"SP110 nuclear body protein"	-1.593	4.235
+"353"	8063437	"TSHZ2"	"teashirt zinc finger homeobox 2"	-0.807	3.131
+"357"	8071061	"TPTEP1"	"transmembrane phosphatase with tensin homology pseudogene 1"	-0.71	3.298
+"359"	8074845	"ZNF280B"	"zinc finger protein 280B"	0.983	3.348
+"360"	8074944	"DERL3"	"derlin 3"	1.053	3.664
+"363"	8081158	"ARL6"	"ADP ribosylation factor like GTPase 6"	-1.72	3.246
+"365"	8081590	"PHLDB2"	"pleckstrin homology like domain family B member 2"	-0.967	3.497
+"366"	8081676	"GTPBP8"	"GTP binding protein 8 (putative)"	-1.223	3.177
+"367"	8082012	"SLC15A2"	"solute carrier family 15 member 2"	-2.567	3.19
+"368"	8082368	"PODXL2"	"podocalyxin like 2"	1.427	3.604
+"370"	8083887	"CLDN11"	"claudin 11"	1.147	3.223
+"371"	8084219	"KLHL24"	"kelch like family member 24"	-2.203	4.928
+"372"	8084694	"EIF4A2"	"eukaryotic translation initiation factor 4A2"	-0.977	3.179
+"373"	8085033	"LMLN"	"leishmanolysin like peptidase"	-1.407	4.977
+"374"	8085788	"NKIRAS1"	"NFKB inhibitor interacting Ras like 1"	-1.347	4.525
+"375"	8087374	"C3orf62"	"chromosome 3 open reading frame 62"	-1.997	4.288
+"376"	8088526	"THOC7"	"THO complex 7"	-0.863	3.347
+"377"	8088911	"ZNF717"	"zinc finger protein 717"	3.507	4.915
+"379"	8089040	"MINA"	"MYC induced nuclear antigen"	-0.97	3.457
+"380"	8089795	"POPDC2///COX17"	"popeye domain containing 2///COX17, cytochrome c oxidase copper chaperone"	-1.397	4.169
+"381"	8090291	"ALG1L"	"ALG1, chitobiosyldiphosphodolichol beta-mannosyltransferase like"	-1.17	4.064
+"382"	8090988	"CEP70"	"centrosomal protein 70"	-1.217	3.206
+"383"	8091009	"PIK3CB"	"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta"	-1.193	3.563
+"384"	8092169	"TNFSF10"	"tumor necrosis factor superfamily member 10"	-2.927	3.859
+"385"	8093258	"IQCG"	"IQ motif containing G"	-1.283	4.275
+"386"	8094688	"LIAS"	"lipoic acid synthetase"	-1.56	3.994
+"387"	8094778	"UCHL1"	"ubiquitin C-terminal hydrolase L1"	4.007	4.189
+"390"	8097507	"RAB33B"	"RAB33B, member RAS oncogene family"	-1.273	3.621
+"392"	8098690	"ZFP42"	"ZFP42 zinc finger protein"	3.757	6.179
+"393"	8098758	"ZNF721"	"zinc finger protein 721"	-1.157	3.48
+"394"	8099395	"RAB28"	"RAB28, member RAS oncogene family"	-1.7	3.173
+"395"	8100478	"AASDH"	"aminoadipate-semialdehyde dehydrogenase"	-0.937	3.515
+"396"	8101284	"PRKG2"	"protein kinase, cGMP-dependent, type II"	-0.947	3.456
+"397"	8103341	"MAP9"	"microtubule associated protein 9"	2.137	3.448
+"399"	8103415	"FAM198B"	"family with sequence similarity 198 member B"	-2.09	3.279
+"401"	8105121	"GHR"	"growth hormone receptor"	-1.693	3.381
+"402"	8106730	"XRCC4"	"X-ray repair cross complementing 4"	-1.237	3.668
+"403"	8106978	"RFESD"	"Rieske Fe-S domain containing"	-1.277	3.91
+"404"	8108861	"NDFIP1"	"Nedd4 family interacting protein 1"	-0.997	3.362
+"405"	8109830	"SPDL1"	"spindle apparatus coiled-coil protein 1"	-0.91	3.411
+"406"	8111533	"LMBRD2"	"LMBR1 domain containing 2"	-1.163	3.641
+"407"	8111677	"LIFR"	"leukemia inhibitory factor receptor alpha"	-1.96	4.432
+"408"	8111788	"TTC33"	"tetratricopeptide repeat domain 33"	-1.29	3.141
+"409"	8111952	"TMEM267"	"transmembrane protein 267"	-1.093	4.359
+"410"	8112596	"ANKRA2"	"ankyrin repeat family A member 2"	-1.227	4.394
+"411"	8113130	"MCTP1"	"multiple C2 and transmembrane domain containing 1"	-2.72	5.482
+"413"	8113403	"GIN1"	"gypsy retrotransposon integrase 1"	-1.177	3.267
+"415"	8115375	"FAM114A2"	"family with sequence similarity 114 member A2"	-1.003	3.125
+"416"	8115666	"NUDCD2"	"NudC domain containing 2"	-1.417	4.166
+"417"	8117640	"ZSCAN16"	"zinc finger and SCAN domain containing 16"	1.363	3.372
+"420"	8121392	"CEP57L1"	"centrosomal protein 57 like 1"	-0.897	3.147
+"421"	8122818	"ARMT1"	"acidic residue methyltransferase 1"	-1.157	3.507
+"423"	8124262	"TDP2"	"tyrosyl-DNA phosphodiesterase 2"	-1.71	4.171
+"424"	8126279	"TREM2"	"triggering receptor expressed on myeloid cells 2"	-2.333	3.841
+"426"	8127534	"MB21D1"	"Mab-21 domain containing 1"	-2.34	3.529
+"427"	8127778	"FAM46A"	"family with sequence similarity 46 member A"	-0.743	3.188
+"428"	8128356	"FBXL4"	"F-box and leucine rich repeat protein 4"	-0.77	3.193
+"430"	8129317	"SERINC1"	"serine incorporator 1"	-0.727	3.225
+"431"	8131957	"SNX10"	"sorting nexin 10"	-1.397	3.769
+"432"	8132803	"CDC14C"	"cell division cycle 14C, pseuodgene"	0.897	3.452
+"433"	8133770	"CCDC146"	"coiled-coil domain containing 146"	-1.617	4.419
+"434"	8133860	"GNAI1"	"G protein subunit alpha i1"	-1.043	3.883
+"435"	8135625	"CAPZA2"	"capping actin protein of muscle Z-line alpha subunit 2"	-1.19	3.619
+"436"	8135688	"LSM8"	"LSM8 homolog, U6 small nuclear RNA associated"	-1.153	3.154
+"437"	8135990	"FLNC"	"filamin C"	0.913	3.384
+"438"	8136281	"FLJ40288"	"uncharacterized FLJ40288"	0.867	3.177
+"439"	8136580	"RAB19"	"RAB19, member RAS oncogene family"	0.807	3.132
+"442"	8137874	"CARD11"	"caspase recruitment domain family member 11"	1.323	3.212
+"443"	8138689	"SKAP2"	"src kinase associated phosphoprotein 2"	-0.783	3.451
+"445"	8139832	"ZNF117"	"zinc finger protein 117"	-1.36	3.428
+"446"	8139840	"ERV3-1"	"endogenous retrovirus group 3 member 1"	-1.7	3.575
+"448"	8141024	"BET1"	"Bet1 golgi vesicular membrane trafficking protein"	-1.223	3.431
+"449"	8141166	"LOC441268"	"uncharacterized LOC441268"	0.923	3.215
+"450"	8141311	"FAM200A"	"family with sequence similarity 200 member A"	-1.29	3.788
+"451"	8142096	"ATXN7L1"	"ataxin 7 like 1"	-0.93	3.581
+"452"	8142098	"ATXN7L1"	"ataxin 7 like 1"	-1.443	4.303
+"453"	8142100	"ATXN7L1"	"ataxin 7 like 1"	-1.21	3.783
+"454"	8142102	"ATXN7L1"	"ataxin 7 like 1"	-1.117	3.327
+"455"	8142646	"IQUB"	"IQ motif and ubiquitin domain containing"	-1.01	3.707
+"457"	8146564	"RAB2A"	"RAB2A, member RAS oncogene family"	-1.287	3.321
+"458"	8146711	"C8orf44-SGK3///C8orf44"	"C8orf44-SGK3 readthrough///chromosome 8 open reading frame 44"	-1.037	3.281
+"460"	8146934	"LY96"	"lymphocyte antigen 96"	-3.403	3.14
+"461"	8147019	"ZC2HC1A"	"zinc finger C2HC-type containing 1A"	-1.673	3.453
+"462"	8147206	"RIPK2"	"receptor interacting serine/threonine kinase 2"	-1.18	3.518
+"463"	8147375	"DPY19L4"	"dpy-19 like 4 (C. elegans)"	-1.407	4.367
+"464"	8147439	"PLEKHF2"	"pleckstrin homology and FYVE domain containing 2"	-1.443	3.459
+"465"	8147970	"EBAG9"	"estrogen receptor binding site associated, antigen, 9"	-1.21	3.753
+"466"	8148000	"AARD"	"alanine and arginine rich domain containing protein"	0.903	3.294
+"467"	8148358	"PHF20L1"	"PHD finger protein 20-like 1"	-0.943	3.171
+"469"	8150714	"PCMTD1"	"protein-L-isoaspartate (D-aspartate) O-methyltransferase domain containing 1"	-2.013	4.055
+"471"	8150877	"SNORD54"	"small nucleolar RNA, C/D box 54"	-1.66	3.728
+"472"	8151401	"UBE2W"	"ubiquitin conjugating enzyme E2 W (putative)"	-1	3.376
+"475"	8151549	"IMPA1"	"inositol monophosphatase 1"	-1.767	4.075
+"476"	8151561	"ZFAND1"	"zinc finger AN1-type containing 1"	-1.757	4.067
+"477"	8151898	"C8orf37"	"chromosome 8 open reading frame 37"	-1.967	3.646
+"478"	8151909	"UQCRB"	"ubiquinol-cytochrome c reductase binding protein"	-1.21	3.777
+"480"	8154153	"CDC37L1"	"cell division cycle 37 like 1"	-1.02	3.177
+"481"	8154254	"RIC1"	"RIC1 homolog, RAB6A GEF complex partner 1"	-0.74	3.147
+"482"	8156521	"MIRLET7F1"	"microRNA let-7f-1"	-2.087	5.957
+"483"	8156861	"STX17"	"syntaxin 17"	-1.063	3.836
+"484"	8158771	"AIF1L"	"allograft inflammatory factor 1 like"	1.1	3.33
+"485"	8160016	"RANBP6"	"RAN binding protein 6"	-1.447	3.249
+"486"	8160478	"CAAP1"	"caspase activity and apoptosis inhibitor 1"	-1.45	4.339
+"487"	8160531	"C9orf72"	"chromosome 9 open reading frame 72"	-1.25	3.22
+"488"	8161265	"IGFBPL1"	"insulin like growth factor binding protein like 1"	0.893	3.225
+"490"	8161839	"NMRK1"	"nicotinamide riboside kinase 1"	-1.283	3.329
+"491"	8163107	"MIR32"	"microRNA 32"	-1.153	3.814
+"492"	8163444	"ZFP37"	"ZFP37 zinc finger protein"	-1.903	3.371
+"494"	8164105	"GOLGA1"	"golgin A1"	-0.96	3.897
+"495"	8166096	"TCEANC"	"transcription elongation factor A N-terminal and central domain containing"	-1	3.523
+"496"	8166805	"ATP6AP2"	"ATPase H+ transporting accessory protein 2"	-1.147	4.322
+"497"	8167897	"RRAGB"	"Ras related GTP binding B"	-1.04	3.743
+"498"	8168438	"UPRT"	"uracil phosphoribosyltransferase homolog"	-1.653	3.37
+"499"	8171708	"CXorf23"	"chromosome X open reading frame 23"	-1.15	3.497
+"501"	8175539	"LDOC1"	"leucine zipper down-regulated in cancer 1"	2.763	4.651
+"502"	8178324	"ZNRD1ASP"	"zinc ribbon domain containing 1 antisense, pseudogene"	-1.027	3.622
