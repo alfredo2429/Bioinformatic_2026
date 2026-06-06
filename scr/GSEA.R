@@ -15,7 +15,11 @@ GPL <- read.delim("~/Project/Bioinformatic_2026/data/GPL6244-17930.txt", comment
 
 # upload gene list
 eb <- read.delim("~/Project/Bioinformatic_2026/data/EB_deg.txt")
-eb$smb
+
+# select underepresented
+eb <- eb[eb$log2<0,]
+head(eb)
+
 
 # II. Change gen codes by same database -------
 
@@ -183,6 +187,7 @@ gene2GO <- split(
 )
 gene2GO$`343066`   # Check
 
+
 # STEP 2: create a index of genes of interest
 geneList<-rep(0,n) 
 geneList[names(gene2GO) %in% eb.ensm$entrezgene_id] <- 1 
@@ -221,5 +226,11 @@ resultFisher.MF.parentchild <- runTest(GOdata.MF,
                                   topNodes=20))
 
 
-
+# BiocManager::install("Rgraphviz")
+library(Rgraphviz)
+par(cex = 0.5)
+showSigOfNodes(GOdata.MF, 
+               score(resultFisher.MF.parentchild), 
+               firstSigNodes = 35, 
+               useInfo = 'all')
 
