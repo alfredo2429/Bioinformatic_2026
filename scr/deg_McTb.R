@@ -12,8 +12,11 @@ BiocManager::install(c(
   "affy",
   "pheatmap",
   "EnhancedVolcano",
-  "Biobase"
+  "Biobase",
+  "STRINGdb",
+  "enrichplot"
 ))
+
 
 # DOWNLOAD DATASET ======
 library(GEOquery)
@@ -54,15 +57,29 @@ tab$gene_symbol <- str_extract(
   "(?<=Name=)[^ ]+"
 )
 
-head(tab[, c("ID","gene_symbol","locus_tag","gene_symbol")])
+# extract gene biotype
+tab$gene_biotype <- str_extract(
+  tab$SPOT_Id,
+  "(?<=biotype=)[^ ]+"
+)
 
-# Check
-head(tab[, c("ID", "GeneID", "locus_tag")])
+# check
+head(tab[, c("ID","Indentifier Source","gene_symbol","locus_tag","gene_biotype")])
+
+# Conting table of genes by biotype
+table(tab$gene_biotype)
+
+# There are NA in the data
+summary(tab)
+
+# Check NA
+tmp <- tab[is.na(tab$locus_tag),]
+head(tmp[,c("ID","gene_symbol","locus_tag","gene_biotype")])
+head(tab[, c("ID","gene_symbol","locus_tag","gene_biotype")])
 
 # rename expression matrix
-annot <- tab[, c("ID", "locus_tag")]    # create a simple 2 column table
-idx <- match(rownames(expr), annot$ID)  # index of gene ID with rowname of expression matrix
-rownames(expr) <- annot$locus_tag[idx]  # change the names
+idx <- match(rownames(expr), tab$ID)  # index of gene ID with rowname of expression matrix
+rownames(expr) <- tab$locus_tag[idx]  # change the names
 
 head(expr)
 
@@ -138,11 +155,10 @@ write.csv(
 deg <- subset(
   results,
   adj.P.Val < 0.05 &
-    abs(logFC) > 1
+    abs(logFC) > 1  
 )
 
 nrow(deg)
-
 head(deg)
 
 # VOLCANO PLOT =====
@@ -161,7 +177,7 @@ EnhancedVolcano(
 # HEAT MAP TOP DEGs =======
 library(pheatmap)
 
-topgenes <- deg$ID[1:min(90,nrow(deg))]
+topgenes <- deg$ID[!is.na(deg$ID)]
 
 mat <- expr_sub[topgenes, ]
 
@@ -238,4 +254,64 @@ ggplot(umap_df, aes(x= UMAP1, y = UMAP2, color = Group)) +
 
 
 # GSEA ====================================
+library(KEGGREST)
+
+mtb_genes <- keggLink("pathway", "mtu")
+head(mtb_genes)
+
+# term to gene
+term2gene <- data.frame(
+  pathway = sub("path:", "", mtb_genes),
+  gene = sub("mtu:", "", names(mtb_genes))
+)
+head(term2gene)
+
+# Run enrichment analysis
+library(clusterProfiler)
+genes <- deg$ID[!is.na(deg$ID)]
+kk <- enricher(
+  gene = genes,
+  TERM2GENE = term2gene,
+  pvalueCutoff = 0.05
+)
+
+# plot
+dotplot(kk, showCategory = 20)
+barplot(kk, showCategory = 15)
+cnetplot(kk)
+
+# GENE SET ENRICHMENT ANALYSIS ===========
+geneList <- results$logFC
+names(geneList) <- results$ID
+geneList <- sort(geneList, decreasing = TRUE)
+
+gsea <- GSEA(
+  geneList,
+  TERM2GENE = term2gene
+)
+# plot
+ridgeplot(gsea)
+dotplot(gsea)
+library(enrichplot)
+gseaplot2(gsea, 1)
+
+# MYCOBROWSER CATEGORIES ============
+myco_t2g <- data.frame(
+  Category = annotation$Functional_Category,
+  Gene = annotation$Locus
+)
+
+enricher(
+  gene = genes,
+  TERM2GENE = myco_t2g
+)
+
+
+# FOR PROTEIN INTERACTION ==============
+library(STRINGdb)
+
+string_db <- STRINGdb$new(
+  version = "12",
+  species = 1773
+)
 
