@@ -28,6 +28,8 @@ pheno <- pData(gse[[1]])
 
 dim(expr)
 head(pheno)
+boxplot(expr[,1:10])
+boxplot(log2(expr[,1:30]))
 
 # CHANGE ID OF GENES =====================
 # Download the platform
@@ -38,6 +40,7 @@ gpl <- getGEO("GPL27959")
 tab <- Table(gpl)
 colnames(tab)
 head(tab)
+View(tab)
 
 # extract gene IDs
 tab$locus_tag <- str_extract(
@@ -76,6 +79,18 @@ summary(tab)
 tmp <- tab[is.na(tab$locus_tag),]
 head(tmp[,c("ID","gene_symbol","locus_tag","gene_biotype")])
 head(tab[, c("ID","gene_symbol","locus_tag","gene_biotype")])
+
+# remove no-protein coding
+table(tab$gene_biotype)
+tab2 <- tab[tab$gene_biotype=="protein_coding",]
+dim(tab2)
+table(tab2$gene_biotype)
+summary(tab2$locus_tag)
+tab2 <- tab2[!is.na(tab2$locus_tag),]
+
+# preserve only genes in my expression matrix
+idx <- match(tab2$ID,rownames(expr))
+expr2 <- expr[idx,]
 
 # rename expression matrix
 idx <- match(rownames(expr), tab$ID)  # index of gene ID with rowname of expression matrix
