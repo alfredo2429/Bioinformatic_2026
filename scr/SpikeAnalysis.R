@@ -298,6 +298,15 @@ meta <- data.frame(
 )
 head(meta)
 
+# save meta
+write.csv(meta,
+          file.path(getwd(),"result","spike_clades.csv"),
+          row.names = FALSE)
+
+# save metadata for iTOL external tool
+library(readr)
+library(dplyr)
+
 # print tree
 library(ggtree)
 
@@ -465,3 +474,52 @@ pdf(file=file.path(getwd(),"plot","logo_Spike.pdf"),
     width = 40,height = 20)
 (px$p1+px$p2)/(px$p3+px$p4)/(px$p5+px$p6)
 dev.off()
+
+# PHYLOGENY ==============================
+# transform data
+mat <- as.matrix(alignment4)
+library(phangorn)
+phy <- phyDat(
+  mat,
+  type = "AA"
+)
+
+# calculate distance matrix
+dm <- dist.ml(phy)
+
+# Neightbor join tree
+tree2 <- NJ(dm)
+tree2 <- midpoint(tree2) # root the midpoint
+
+# Optimize tree
+fit <- pml(tree2,phy)
+fit <- optim.pml(
+  fit,
+  model="JTT",
+  optGamma=TRUE,
+  optInv=TRUE
+)
+
+# best tree
+tree2.ml <- fit$tree
+tree2.ml <- midpoint(tree2.ml)
+
+# plot
+library(ggtree)
+ggtree(tree2)
+ggtree(tree2.ml) +
+  geom_tiplab(align = T) +
+  #geom_text(aes(label=node), hjust=-.3)
+  geom_cladelabel(node=23, label="C-21", 
+                  color="red2", offset=.01) + 
+  geom_cladelabel(node=27, label="C-22", 
+                  color="blue", offset=.025) +
+  geom_cladelabel(node=29, label="C-23", 
+                  color="orange", offset=.01) 
+
+# 23, 27, 29
+# save
+write.tree(            # save the tree
+  tree2.ml,
+  file = file.path(getwd(),"result","HL_Spike_tree2.nwk")
+)
