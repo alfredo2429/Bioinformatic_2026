@@ -204,7 +204,7 @@ names(alignment2) <- substr(names(alignment2), 1, 8)
 
 # transform data
 mat <- as.matrix(alignment2)
-
+library(phangorn)
 phy <- phyDat(
                mat,
                 type = "AA"
@@ -325,16 +325,42 @@ library(ggmsa)
 ggmsa(
   alignment2,
   start = 1,
-  end = 200
+  end = 20
 )
 
-# Conservation map
-library(msa)
-msaPrettyPrint(
-  alignment,
-  output="pdf",
-  file= file.path(getwd(),"plot","alignment.pdf")
+# # Conservation map
+# library(msa)
+# msaPrettyPrint(
+#   alignment,
+#   output="pdf",
+#   file= file.path(getwd(),"plot","alignment.pdf")
+# )
+
+
+# EXTRACT CLADES SEQUENCE =====================================
+
+consensus_list <- lapply(sort(unique(groups)), function(k){
+  seq_names <- names(groups[groups == k])
+  seqs <- alignment2[seq_names]
+  consensusString(seqs)
+})
+
+# remove characters "x", "?", or "-"
+consensus_list <- lapply(
+  consensus_list,
+  function(x) gsub("[X?\\-]", "", x)
 )
+
+names(consensus_list) <- paste0("Clade_", sort(unique(groups)))
+
+library(Biostrings)
+
+consensusAA <- AAStringSet(
+  lapply(consensus_list, AAString)
+)
+
+# FALTA ALINEAR LAS SECUENCIAS CONSENSO Y LUEGO ENCONTRAR LAS VARIACIONES
+
 
 # LOGO plot
 library(ggseqlogo)
