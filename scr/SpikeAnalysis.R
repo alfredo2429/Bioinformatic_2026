@@ -199,6 +199,8 @@ consensus <- ConsensusSequence(
 )
 
 # PHYLOGENY ==============================
+# cut names
+names(alignment2) <- substr(names(alignment2), 1, 8)
 
 # transform data
 mat <- as.matrix(alignment2)
@@ -226,6 +228,7 @@ fit <- optim.pml(
 
 # best tree
 tree.ml <- fit$tree
+tree.ml <- midpoint(tree.ml)
 
 # plot
 library(ggtree)
@@ -263,39 +266,52 @@ ggtree(tree.ml)
 dev.off()
 
 # IDENTIFY CLADES ==============================
-class(tree.ml)
-class(tree)
-class(fit)
-class(bs)
-
 # convert distance
 cophenetic_matrix <- cophenetic(tree.ml)
+heatmap(cophenetic_matrix)
 
 # hierarchical clustering
 hc <- hclust(as.dist(cophenetic_matrix))
+plot(hc)
 
-# Cluster identify
+# Cluster identify (clade)
 library(cluster)
-
-for(k in 2:10){
+res1 <- numeric(length = length(2:25))
+names(res1) <- as.character(2:25)
+for(k in 2:25){
   cl <- cutree(hc,k)
   sil <- silhouette(cl,dist(cophenetic_matrix))
-  print(c(k,mean(sil[,3])))
+  res1[k-1] <- mean(sil[,3])
 }
+plot(res1,type="l")
+
+
+# mark the 4 clades
+groups <- cutree(hc, k = 15)
+table(groups)
+
+#create a metadata
+library(dplyr)
+meta <- data.frame(
+  label = names(groups),
+  Clade = factor(groups)
+)
+head(meta)
 
 # print tree
-BiocManager::install("ggtree")
 library(ggtree)
 
-p <- ggtree(tree_ml)
+p <- ggtree(tree.ml)
+p <- p %<+% meta
 p +
   geom_tiplab(size=2) +
   theme_tree2()
 p +
-  geom_tippoint(
-    aes(color=factor(clades)),
-    size=2
-  )
+  geom_tippoint(aes(color = Clade), size = 2) +
+  theme_tree2()
+
+ggtree(tree.ml, layout = "circular") %<+% meta +
+  geom_tippoint(aes(color = Clade), size = 1.5)
 
 # save
 ggsave(
@@ -307,7 +323,7 @@ ggsave(
 # PLOT ALIGNMENT ================================
 library(ggmsa)
 ggmsa(
-  alignment_filtered,
+  alignment2,
   start = 1,
   end = 200
 )
