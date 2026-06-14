@@ -359,76 +359,109 @@ consensusAA <- AAStringSet(
   lapply(consensus_list, AAString)
 )
 
-# FALTA ALINEAR LAS SECUENCIAS CONSENSO Y LUEGO ENCONTRAR LAS VARIACIONES
+# IMPORT REFERENCE SEQUENCE ===========================
+library(Biostrings)
+library(rentrez)
+# Download reference spike sequences
+fasta <- entrez_fetch(
+  db = "protein",
+  id = "YP_009724390.1",  # "Wuham Spike"
+  rettype = "fasta",
+  retmode = "text",
+)
 
+# save refseq
+outfile <- file.path(getwd(),"result","refSeq.fasta")
+cat(
+  fasta,
+  file = outfile,
+  append = TRUE
+)
+RefSeqWuham <- readAAStringSet(outfile)
+names(RefSeqWuham) <- "WuhamREFSEQ"
 
-# LOGO plot
-library(ggseqlogo)
-mat <- as.matrix(alignment_filtered)
+# Join refseq
+length(consensusAA)
+consensusAA <- c(RefSeqWuham,consensusAA)
+length(consensusAA)
 
-ggseqlogo(mat)
+# ALIGNM SEQUENCES ================================
+library(msa)
+alignment3 <- msa(
+  consensusAA,
+  method = "Muscle", # Omega more efficient for >1000 seq
+  verbose = TRUE
+)
+
+# Evaluate alignment quality
+library(DECIPHER)
+alignment4 <- AAStringSet(alignment3)
+BrowseSeqs(alignment4)
+
 
 # VARIABLE SITE ANALYSIS =========================
-n_sites <- ncol(mat)
-variable <- logical(n_sites)
+# convert a matrix
+aln_mat <- as.matrix(alignment4)
 
-for(i in seq_len(n_sites)) {
-  
-  residues <- unique(
-    mat[, i]
-  )
-  
-  residues <- residues[
-    residues != "-"
-  ]
-  
-  variable[i] <- length(residues) > 1
+# compute entrophy
+site_entropy <- apply(
+  aln_mat,
+  2,
+  function(x){p <- table(x)/length(x);-sum(p*log2(p))}
+)
+plot(site_entropy,type="l")
+plot(smooth(site_entropy),type="l")
+site_entropy <- smooth(site_entropy)
+
+# define variable position
+var.pos <- which(site_entropy>0.5)
+var.pos <- var.pos[var.pos>100&var.pos<1200] # remove extreme
+
+# 247 248 249 412 413 414 415 483 484 515 516 521 522
+# 523 524 525 526 719 720 721 722 723
+
+var.pos <- list(c(240:260),
+                c(405:425),
+                c(475:495),
+                c(505:525),
+                c(515:535),
+                c(710:730))
+
+# Plot
+# install.packages("ggseqlogo")
+library(ggseqlogo)
+library(ggplot2)
+
+s1 <- apply(aln_mat[,var.pos[[1]]],
+            1,
+            paste0,
+            collapse = "")
+ggseqlogo(
+  s1,
+  method = "probability",
+  seq_type = "aa"
+)
+px <- list()
+for (i in 1:length(var.pos)) {
+  tmp <- var.pos[[i]]
+  px[[i]] <- ggseqlogo(
+    apply(aln_mat[,tmp],1,paste0,collapse = ""),
+    method = "probability",
+    seq_type = "aa"
+    ) +
+    labs(title = paste("POSITION: ",
+                       tmp[1],
+                       ":",
+                       tmp[length(tmp)],
+                       sep=""),
+         )
 }
 
-# COUNT VARIATION FREQUENCY ==========
-# Create the variation frequency
-variation_frequency <- numeric(n_sites)
-for(i in seq_len(n_sites)) {
-  
-  tab <- table(
-    mat[, i]
-  )
-  
-  variation_frequency[i] <-
-    1 - max(tab) / sum(tab)
-}
+names(px) <- paste("p",1:6,sep = "")
 
-# plot 
-variation_df <- data.frame(
-  Position = 1:n_sites,
-  Variation = variation_frequency
-)
-
-ggplot(
-  variation_df,
-  aes(Position, Variation)
-) +
-  geom_line() +
-  theme_bw() +
-  labs(
-    title = "Spike Protein Variation Frequency",
-    x = "Amino Acid Position",
-    y = "Variation Frequency"
-  )
-
-ggsave(
-  "Spike_variation_plot.pdf",
-  width = 12,
-  height = 4
-)
-
-# most variable residuos
-top_sites <- variation_df %>%
-  arrange(desc(Variation)) %>%
-  head(50)
-
-write.csv(
-  top_sites,
-  "Top_Variable_Sites.csv",
-  row.names = FALSE
-)
+# install.packages("patchwork")
+library(patchwork)
+pdf(file=file.path(getwd(),"plot","logo_Spike.pdf"),
+    width = 40,height = 20)
+(px$p1+px$p2)/(px$p3+px$p4)/(px$p5+px$p6)
+dev.off()
